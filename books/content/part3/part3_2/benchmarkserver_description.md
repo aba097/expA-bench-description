@@ -10,17 +10,22 @@ WEBシステムからベンチマークサーバに計測リクエストを送�
 :align: center
 ```
 
+
 ## 予選・本選ベンチマークサーバ
 ### ベンチマークサーバの使用方法
-ベンチマークサーバにアクセスします．（学内からでないとアクセスできません）
-- [予選benchmarkserver](https://google.com)
-- [本選benchmarkserver](https://google.com)（本選期間のみアクセス可能）
+[ベンチマークサーバ](https://google.com)にアクセスします．（学内からでないとアクセスできません）
 
-![bench-top.png](../../../images/part3/part3_2/bench-top.png)
+予選期間は予選ベンチマークサーバにのみ，本選期間は本選ベンチマークサーバにのみアクセス可能です．
+
+```{image} ../../../images/part3/part3_2/bench-top.png
+:alt: ベンチマークサーバのトップ画面
+:width: 800px
+:align: center
+```
+
 
 グループ名，事前に配布されたパスワード，みなさんが作成したwebシステムのURLを入力します．
-
-URLは以下のようになると思います．
+WebシステムのURLは以下のようになると思います．
 
 **フォーマット：**
 ```
@@ -30,29 +35,50 @@ http://<Raspberry PiのIPアドレス>/~<username>/<プログラム名>
 ```
 http://192.168.100.49/~pi/progA.php
 ```
-また，Raspberry PiのIPアドレスはターミナルで以下のコマンドを実行することで確認できます．
+また，Raspberry PiのIPアドレスはSUCSexpA Wi-Fiに接続後，ターミナルで以下のコマンドを実行することで確認できます．
 ```
 $ ip a
 ```
-<br>（画像）<br>
-上記の場合，`192.168.100.49`がRaspberry PiのIPアドレスとなります．
+
+```{image} ../../../images/part3/part3_2/raspi_ip.png
+:alt: ip aの例
+:width: 800px
+:align: center
+```
+
+上記の場合，`192.168.0.124`がRaspberry PiのIPアドレスとなります．
 
 フォームに情報を入力した後，計測開始ボタンをクリックします．
-![bench-top-example.png](../../../images/part3/part3_2/bench-top-example.png)
+
+```{image} ../../../images/part3/part3_2/bench-top-example.png
+:alt: ベンチマークサーバのトップ画面 入力例
+:width: 800px
+:align: center
+```
+
 
 計測開始ボタンをクリックするとキューに追加されます．
-待ちがない場合は，そのままwebシステムの性能の計測を行いますが，先に性能を計測しているグループ
-が存在する場合は，それらのグループの計測が終了するまで待機します．
-<br>（待ちあり・なし画像）<br>
+待ちがない場合は，そのままwebシステムの性能の計測を行いますが，先に性能を計測しているグループが存在する場合は，それらのグループの計測が終了するまで待機します．（1グループの計測に最大3分ほどかかります）
+```{image} ../../../images/part3/part3_2/bench-queue.png
+:alt: ベンチマークサーバのqueue待ち画面
+:width: 800px
+:align: center
+```
+
 
 webシステムの計測が正常に終了すると，計測結果が表示されます．
-<br>（画像）<br>
-予選ベンチマークサーバの場合は，計測結果を記録するか選択可能ですが，本選ベンチマークサーバの場合は，自動的に記録されます．
-<br>（予選，本選画像）<br>
+```{image} ../../../images/part3/part3_2/bench-result.png
+:alt: ベンチマークサーバの計測結果画面
+:width: 800px
+:align: center
+```
+
 
 ## ランキング
-[ランキング](http://expa-ranking.s3-website-ap-northeast-1.amazonaws.com/)やベンチマークサーバのトップページから，全グループの計測結果を見ることができます．
-<br>（画像）<br>
+[http://expa-ranking.s3-website-ap-northeast-1.amazonaws.com](http://expa-ranking.s3-website-ap-northeast-1.amazonaws.com)やベンチマークサーバのトップページから，全グループの計測結果を見ることができます．
+
+また，[http://expa-ranking.s3-website-ap-northeast-1.amazonaws.com?group_id=a1](http://expa-ranking.s3-website-ap-northeast-1.amazonaws.com?group_id=a1)のようにすることで，グループごとの結果も確認することができます．
+
 他のグループに負けないような高性能なwebシステムの設計を目指しましょう．
 
 ## 在宅用ベンチマークサーバ
@@ -64,12 +90,18 @@ webシステムの計測が正常に終了すると，計測結果が表示さ�
 ベンチマークサーバをダウンロードします．
 - `\\fs.inf.in.shizuoka.ac.jp\\share\\class\\情報科学実験I\\第三部サンプルデータ\\benchmarkserver.zip`（静大のネットワーク内からはWindowsファイル共有にて．外部からはVPNを利用してアクセス可能）
 ダウンロードしたzipファイルを解凍し，解凍したフォルダ内のmain.exeをダブルクリックし，ベンチマークサーバを起動します．
-初回起動時は以下のような警告がでてくると思いますので，hogeを選択してください．
-<br>（画像）<br>
+以下のような警告がでた場合は，「アクセスを許可する」を選択してください．
+```{image} ../../../images/part3/part3_2/firewall.png
+:alt: ファイヤーウォール許可
+:width: 600px
+:align: center
+```
+
 
 すると，コマンドプロンプトが立ち上がり，以下のメッセージが表示されます．
-<br>（画像）<br>
-
+```
+2022/xx/xx xx:xx:xx Listening...
+```
 次に，webブラウザを開いて，以下のURLを入力し，ベンチマークサーバにアクセスします．
 ```
 http://localhost:3000
@@ -87,24 +119,27 @@ http://localhost:3000
   - デフォルト値
 * - -n 数値
   - テストで発行するリクエストの回数を数値で指定
-  - 0
+  - 10
 * - -c 数値
   - テストで同時に発行するリクエストの数を数値で指定
-  - 0
+  - 5
 * - -t 数値
   - 1リクエストのタイムアウト時間を秒単位で指定
-  - 0
+  - 2
 * - -r 数値
   - 1の場合のみ計測に使用するタグ名をランダムな順番で選択
   - 1
-* - -s 文字列
+* - -s 数値
   - 計測に使用するタグ数を指定．-1の場合は，ファイルに記載されているすべてタグを使用
-  - ./hoge/hoge.txt
+  - 100
+* - -p 文字列
+  - 計測に使用するタグ名が記載されているファイルのPathを指定
+  - ./searchtag.txt
 ```
 #### 使い方
 上記のパラメータを変更して起動するためには，コマンドプロンプトから在宅用ベンチマークサーバを起動する必要があります．
 在宅用ベンチマークサーバが存在するフォルダへ移動した後，以下のように実行します．
 ```
-./main -n 5 
+main -n 5 
 ```
 [コマンドプロンプトの基本的なコマンド一覧](https://docs.microsoft.com/ja-jp/windows-server/administration/windows-commands/windows-commands)
